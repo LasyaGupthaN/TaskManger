@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - AJAX & DOM Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Task Manager</h1>
+            <p>Demonstrating AJAX, DOM Manipulation & Node.js Backend</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <div class="number" id="stat-total">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Completed</h3>
+                <div class="number" id="stat-completed">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pending</h3>
+                <div class="number" id="stat-pending">0</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Enter a new task...">
+                <button id="addBtn">Add Task</button>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                Loading tasks...
+            </div>
+
+            <ul id="tasksList" class="tasks-list"></ul>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                </svg>
+                <h3>No tasks yet!</h3>
+                <p>Add your first task to get started</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
