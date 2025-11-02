@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Docker image
-        run: docker build -t task-manager .
+        run: docker build -t myapp-repo .
 
       # ----- Push to Docker Hub -----
       - name: Log in to Docker Hub
@@ -33,8 +33,8 @@ jobs:
 
       - name: Tag and Push to Docker Hub
         run: |
-          docker tag task-manager:latest ${{ secrets.DOCKERHUB_USERNAME }}/task-manager:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/task-manager:latest
+          docker tag myapp-repo:latest ${{ secrets.DOCKERHUB_USERNAME }}/myapp-repo:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp-repo:latest
 
       # ----- Push to AWS ECR -----
       - name: Configure AWS credentials
@@ -42,7 +42,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1  # Change region if needed
+          aws-region: ap-south-1
 
       - name: Log in to Amazon ECR
         id: login-ecr
@@ -50,5 +50,5 @@ jobs:
 
       - name: Tag and Push to ECR
         run: |
-          docker tag task-manager:latest ${{ steps.login-ecr.outputs.registry }}/task-manager:latest
-          docker push ${{ steps.login-ecr.outputs.registry }}/task-manager:latest
+          docker tag myapp-repo:latest ${{ steps.login-ecr.outputs.registry }}/myapp-repo:latest
+          docker push ${{ steps.login-ecr.outputs.registry }}/myapp-repo:latest
